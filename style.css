@@ -1,0 +1,283 @@
+/* --- Reset e Variáveis --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+:root {
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: 1px solid rgba(255, 255, 255, 0.2);
+    --text-color: #ffffff;
+}
+
+body {
+    /* Gradiente simulando a imagem original */
+    background: linear-gradient(135deg, #7f0513 10%, #FE9090 20%, #5d26c1 70%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* --- O Cartão Principal (Glass Effect) --- */
+.card {
+    width: 100%;
+    max-width: 400px;
+    background: rgba(20, 20, 20, 0.6); /* Fundo escuro translúcido */
+    backdrop-filter: blur(15px); /* O desfoque do vidro */
+    -webkit-backdrop-filter: blur(15px);
+    border: var(--glass-border);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    position: relative;
+    overflow: hidden;
+}
+
+.card-dots {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    color: white;
+    font-size: 2rem;
+    line-height: 1;
+}
+
+/* --- Cabeçalho do Perfil --- */
+header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 30px;
+    color: var(--text-color);
+}
+
+.avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 3px solid rgba(255,255,255,0.8);
+    object-fit: cover;
+}
+
+.profile-info h1 {
+    font-size: 1.5rem;
+    font-weight: 300;
+    line-height: 1.2;
+}
+
+.profile-info h1 strong {
+    display: block;
+    font-weight: 700;
+    font-size: 1.8rem;
+}
+
+.details {
+    margin-top: 10px;
+    list-style: none;
+    font-size: 0.85rem;
+    opacity: 0.9;
+}
+
+.details li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 4px;
+}
+
+/* --- Accordion (Lista Expansível) --- */
+.accordion {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.accordion-item {
+    border: var(--glass-border);
+    border-radius: 15px;
+    background: rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.accordion-header {
+    width: 100%;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    outline: none;
+}
+
+.accordion-header i {
+    transition: transform 0.3s ease;
+}
+
+/* Conteúdo escondido */
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+    background: rgba(245, 168, 168, 0.158);
+    padding: 0 20px;
+    font-size: 0.9rem;
+    color: #ddd;
+}
+
+.accordion-item.active .accordion-content {
+    max-height: 180px; /* Ajuste essa altura conforme preferir */
+    padding: 15px 20px;
+    overflow-y: auto; /* ISSO cria o scroll vertical quando o conteúdo for grande */
+}
+
+.accordion-item.active .accordion-header i {
+    transform: rotate(180deg);
+}
+
+
+
+/* --- Estilização da Barra de Rolagem (Scrollbar Customizada) --- */
+
+/* Largura da barra */
+.accordion-content::-webkit-scrollbar {
+    width: 6px; /* Bem fininha para não atrapalhar o design */
+}
+
+/* O "trilho" por onde a barra corre */
+.accordion-content::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1); /* Quase invisível */
+    margin: 10px 0; /* Um pequeno respiro nas pontas */
+}
+
+/* A barra em si (o "polegar") */
+.accordion-content::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3); /* Branco transparente */
+    border-radius: 10px; /* Bordas arredondadas */
+}
+
+/* Quando passa o mouse em cima da barra */
+.accordion-content::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.5); /* Fica um pouco mais visível */
+}
+
+
+/* --- Estilos da Experiência Profissional --- */
+
+.job-item {
+    margin-bottom: 25px; /* Espaço entre um emprego e outro */
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Linha divisória sutil (opcional) */
+}
+
+/* Remove a borda do último item para não ficar estranho */
+.job-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.job-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 5px;
+}
+
+.job-date {
+    display: flex;
+    align-items: center;
+    gap: 6px; /* Espaço entre o ícone e a data */
+    font-size: 0.85rem;
+    color: #cccccc; /* Cor cinza claro para destacar menos que o título */
+    margin-bottom: 10px;
+}
+
+.job-description {
+    font-size: 0.9rem;
+    line-height: 1.5; /* Altura da linha para facilitar a leitura */
+    color: #e0e0e0;
+    text-align: justify; /* Deixa o texto quadradinho se preferir */
+}
+
+
+.job-description {
+    padding-right: 10px; /* Evita que o texto encoste na barra de rolagem */
+  }
+
+  /* --- Estilos da Aba Skills (Duas Colunas) --- */
+
+.skills-container {
+    display: flex; /* Coloca um ao lado do outro */
+    gap: 20px; /* Espaço entre as colunas */
+    margin-top: 10px;
+}
+
+.skills-box {
+    flex: 1; /* Faz as duas caixas terem o mesmo tamanho */
+    text-align: center; /* Centraliza os títulos */
+}
+
+.skills-box h4 {
+    font-size: 0.95rem;
+    margin-bottom: 15px;
+    color: #fff;
+    font-weight: 600;
+}
+
+/* --- Ícones (Lado Esquerdo) --- */
+.tools-grid {
+    display: flex;
+    flex-wrap: wrap; /* Permite quebrar linha se não couber */
+    justify-content: center;
+    gap: 15px;
+    font-size: 2.5rem; /* Tamanho dos ícones */
+    color: #fff;
+}
+
+/* Efeito ao passar o mouse nos ícones */
+.tools-grid i:hover {
+    transform: scale(1.1); /* Aumenta um pouco */
+    color: #FF61D2; /* Fica rosa */
+    transition: all 0.2s;
+}
+
+/* --- Lista (Lado Direito) --- */
+.soft-skills-list {
+    list-style: none;
+    text-align: left; /* Texto alinhado à esquerda */
+    font-size: 0.85rem;
+    color: #ddd;
+    padding-left: 10px;
+}
+
+.soft-skills-list li {
+    margin-bottom: 6px;
+    position: relative;
+    padding-left: 15px; /* Espaço para a bolinha */
+}
+
+/* Cria a bolinha personalizada antes de cada item */
+.soft-skills-list li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: #FF61D2; /* Bolinha rosa */
+    font-weight: bold;
+}
+
+/* --- Ajuste para Celular (Responsividade) --- */
+@media (max-width: 480px) {
+    .skills-container {
+        flex-direction: column; /* Em telas pequenas, fica um embaixo do outro */
+    }
+}
